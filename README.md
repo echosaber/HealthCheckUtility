@@ -1,13 +1,13 @@
 # JSS Health Check Utility
 
-The JSS Health Check Utility is a lightweight tool for JSS administrators to run inside of their environments to perform automated health checks. It performs checks for things that commonly appear during scheduled health checks, like having too little RAM, expiring items, bad scripts, etc. Simply provide the tool the JSS URL, Username, and Password. It will perform API GETs to the JSS, get the JSS Summary, as well as run some commands on the system, and then display a report to the end user. Nothing is ever edited, only read. The goal of this tool is to help administrators idenitify issues with their environment before the issues assire.
+The JSS Health Check Utility is a lightweight tool for JSS administrators to run inside of their environments to perform automated health checks. It performs checks for things that commonly appear during scheduled health checks, like having too little RAM, expiring items, bad scripts, etc. Simply provide the tool the JSS URL, Username, and Password. It will perform API GETs to the JSS, get the JSS Summary, as well as run some commands on the system, and then display a report to the end user. Nothing is ever edited, only read. The goal of this tool is to help administrators identify issues with their environment before the issues arise.
 **This tool is provided "AS IS", therefore no support from JAMF Software is guaranteed.**
 
 ## Getting Started
 
 The latest release will always be available in the "Releases" tab above. 
 
-The tool runs cross platform on Mac, Windows and headless linux, with the linux version using a text interface. It requires Java 7+. There is a single binary that runs across all platforms. A configuration XML file is read by the tool to find values to use in health calculation. There is a sample configuration file, but the settings can be tweaked if you know what you are doing. Simply point the tool to the path to this file, on first run, and then everything is complete. (If the xml file is in the same directory as the jar, it will auto-discover the xml file). 
+The tool runs cross platform on Mac, Windows and headless Linux, with the Linux version using a text interface. It requires Java 7+. There is a single binary that runs across all platforms. A configuration XML file is read by the tool to find values to use in health calculation. There is a sample configuration file, but the settings can be tweaked if you know what you are doing. Simply point the tool to the path to this file, on first run, and then everything is complete. (If the xml file is in the same directory as the jar, it will auto-discover the xml file). 
 
 ### Downloading and Running
 
@@ -41,10 +41,10 @@ java -jar healthcheck.jar -h
 - **Below data is pulled from the JSS Summary**
 - Web App Directory, Java Vendor, Database size and large SQL Tables
 - Password Strength, Clustering and Activation Code Expiration
-- Change Managment Info, Tomcat Info, Log Flushign Settings and Login/Logout Hook Info
+- Change Management Info, Tomcat Info, Log Flushing Settings and Login/Logout Hook Info
 - **Below data is pulled from the JSS API**
 - GETs Activation code to be displayed in the interface
-- GETs the computer checkin frequency and ensures it is not too high for the enviornment size
+- GETs the computer Check-In frequency and ensures it is not too high for the environment size
 - GETs LDAP Server Information to Display 
 - GETs GSX and Managed Preference profile information and checks if it is being used
 - GETs Computer, Mobile and User group information and warns of high criteria count or nested smart groups
@@ -55,12 +55,12 @@ java -jar healthcheck.jar -h
 - GETs Network Segments and the SMTP server to display to the user
 - GETs all policies, and checks for policies that contain an update inventory with recurring checkin enabled
 
-After all of this data is pulled, the tool will parse the data, and display important items to the end user. The items that releate to the system are not displayed with cloud hosted JSSs. 
+After all of this data is pulled, the tool will parse the data, and display important items to the end user. The items that relate to the system are not displayed with cloud hosted JSSs. 
 
 ### Screenshots
 ![Screen One](http://i.imgur.com/Meu8rmm.png "Screen One")
 ![Screen Two](http://i.imgur.com/wDGidaO.png "Screen Two")
-![Screen Thre](http://i.imgur.com/S40Ni8T.png "Screen Three")
+![Screen Three](http://i.imgur.com/S40Ni8T.png "Screen Three")
 
 ## Libraries Used and Acknowledgments
 
@@ -77,7 +77,7 @@ After all of this data is pulled, the tool will parse the data, and display impo
 
 ## Support
 
-This tool is provided AS IS, and thus no support from JAMF Software, or any other entities is garunteed. While in it's beta stage, please contact Jake Schultz with any questions or bugs. (jacob.schultz@jamfsoftware.com) Please include any output from the tool in any emails. 
+This tool is provided AS IS, and thus no support from JAMF Software, or any other entities is guaranteed. While in it's beta stage, please contact Jake Schultz with any questions or bugs. (jacob.schultz@jamfsoftware.com) Please include any output from the tool in any emails. 
 
 ## Where is the Code? 
 
