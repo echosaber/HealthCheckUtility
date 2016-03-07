@@ -39,13 +39,14 @@ java -jar healthcheck.jar -h
 <img src="http://i.imgur.com/guI5zrS.png" width="50%" height="50%">
 
 ## What does the tool check for?
-
-- OS, Java, and Tomcat Version
+- **Below data is pulled from the system, and will only be accurate if ran on the server**
 - The amount of free/max memory and the amount of free/max space on disk
 - **Below data is pulled from the JSS Summary**
 - Web App Directory, Java Vendor, Database size and large SQL Tables
 - Password Strength, Clustering and Activation Code Expiration
 - Change Management Info, Tomcat Info, Log Flushing Settings and Login/Logout Hook Info
+- Checks for mismatching database tables
+- OS, Java, and Tomcat Version
 - **Below data is pulled from the JSS API**
 - GETs Activation code to be displayed in the interface
 - GETs the computer Check-In frequency and ensures it is not too high for the environment size
@@ -60,6 +61,19 @@ java -jar healthcheck.jar -h
 - GETs all policies, and checks for policies that contain an update inventory with recurring checkin enabled
 
 After all of this data is pulled, the tool will parse the data, and display important items to the end user. The items that relate to the system are not displayed with cloud hosted JSSs. 
+
+### Changelog
+v1.0-beta.2
+* Added checks for mismatching dabatabase tables
+* Added more script checks
+* Prompts user again when they select a directory that doesn't exist for test output
+* Updates wording and error messages in several spots
+* Error/Exception handling: the tool will continue to run, just without the data that caused the exception
+* Gathers as much data as possible from the summary, instead of running system commands
+* Other small bug fixes
+
+v1.0-beta.1
+* First Release
 
 ### Screenshots
 ![Screen One](http://i.imgur.com/Meu8rmm.png "Screen One")
