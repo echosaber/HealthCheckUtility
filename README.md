@@ -82,10 +82,11 @@ v1.0-beta.1
 
 ## Libraries Used and Acknowledgments
 
-* Apache Commons Codec
+* Apache Commons Codec and Commons Lang
 * Google JSON (gson)
 * Java X JSON
 * JDOM
+* Java MySQL Connector
 
 ## Authors
 
@@ -97,9 +98,11 @@ v1.0-beta.1
 
 This tool is provided AS IS, and thus no support from JAMF Software, or any other entities is guaranteed. While in it's beta stage, please contact Jake Schultz with any questions or bugs. (jacob.schultz@jamfsoftware.com) Please include any output from the tool in any emails. 
 
-## Where is the Code? 
+## Source Code 
 
-This tool is being distributed in binary-only format, for now. The tool **may** be open sourced in the future. Head to the releases tab to grab the .jar file. 
+The source code for this tool is now being distributed freely. The code should be considered in a beta stage as well, and is subject to large changes before release. Please create pull requests for any bug fixes or additions/changes you may make. 
+
+To compile you must have all of the required libraries downloaded including Apache Commons Codec, Commons Lang, GSON, JavaX JSON, JDOM and the Java MySQL connector. All of the source code lives in the /src directory. 
 
 ## License
 
