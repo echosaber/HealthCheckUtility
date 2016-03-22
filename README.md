@@ -1,6 +1,6 @@
 # JSS Health Check Utility (Beta)
 
-The JSS Health Check Utility is a lightweight tool for JSS administrators to run inside of their environments to perform automated health checks. It performs checks for things that commonly appear during scheduled health checks, like having too little RAM, expiring items, bad scripts, etc. Simply provide the tool the JSS URL, Username, and Password. The tool will perform API GETs to the JSS, get the JSS Summary, as well as run some commands on the system, and then display a report to the end user. Nothing is ever edited, only read. The goal of this tool is to help administrators identify issues with their environment before the issues arise.
+The JSS Health Check Utility is a lightweight tool for JSS administrators to run inside of their environments to perform automated health checks. It performs checks for things that commonly appear during scheduled health checks, like having too little RAM, expiring items, bad scripts, etc. Simply provide the tool the JSS URL, Username, and Password. The tool will perform API GETs to the JSS, get the JSS Summary, as well as run some commands on the system, and then display a report to the end user. Nothing is ever edited, only read. The goal of this tool is to help administrators identify issues with their environment before the issues arise. This tool was written in Java, to be cross platform and available to as many as possible. 
 **This tool is provided "AS IS", therefore no support from JAMF Software is guaranteed.**
 
 ## Getting Started
@@ -103,6 +103,12 @@ This tool is provided AS IS, and thus no support from JAMF Software, or any othe
 The source code for this tool is now being distributed freely. The code should be considered in a beta stage as well, and is subject to large changes before release. Please create pull requests for any bug fixes or additions/changes you may make. 
 
 To compile you must have all of the required libraries downloaded including Apache Commons Codec, Commons Lang, GSON, JavaX JSON, JDOM and the Java MySQL connector. All of the source code lives in the /src directory. 
+
+## Source Code TODO
+* Standarize Variable Names
+* Refactor Panel Generation Code
+* Finish Java Docs
+* Clean up HealthCheck class
 
 ## License
 
