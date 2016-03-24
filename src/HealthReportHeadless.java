@@ -190,6 +190,9 @@ public class HealthReportHeadless {
             output += ("\n !!The JSS contains one or more Xerox printers. They often have large driver packages. Ensure the MySQL max packet size is configured to allow this.");
         }
 
+        if ((extractData(system, "mysql_version").contains("5.6.16") || extractData(system, "mysql_version").contains("5.6.20")) && (extractData(system,"os").contains("OS X") || extractData(system,"os").contains("Mac") || extractData(system,"os").contains("OSX"))){
+            output += ("\n!!! The tool has detected that the server is running on a version of MySQL and OSX that have known performance issues. See this defect: http://bugs.mysql.com/bug.php?id=71960.");
+        }
 
         String[][] computer_groups = extractArrayData(data,"computergroups","name","nested_groups_count","criteria_count");
         String[][] mobile_groups = extractArrayData(data,"mobiledevicegroups","name","nested_groups_count","criteria_count");

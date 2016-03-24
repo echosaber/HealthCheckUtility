@@ -103,7 +103,7 @@ public class Main {
     }
     private static void writeLogEntry(int mobileDeviceLength, int computerLength){
         try {
-            FileWriter fw = new FileWriter("/Users/jacobschultz/Desktop/health_log.txt",true);
+            FileWriter fw = new FileWriter("",true);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd HH:mm");
             Date date = new Date();
             fw.write(df.format(date) + " " + mobileDeviceLength + " " + computerLength + " " + Runtime.getRuntime().freeMemory() + " " + Runtime.getRuntime().totalMemory() + "\n");

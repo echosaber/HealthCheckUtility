@@ -5,6 +5,8 @@ public class PanelIconGenerator {
 
     public boolean showCheckinFreq = false;
     public boolean showExtensionAttributes = false;
+    public boolean showSystemRequirements = false;
+    public boolean showScalability = false;
 
     public PanelIconGenerator(){}
 
@@ -87,28 +89,33 @@ public class PanelIconGenerator {
         }
 
         if (java_version.contains("1.6")){
+            this.showSystemRequirements = true;
             return "red";
         }
         if (total_devices < 500){
             if (memory_in_mb < server_mem_recommended){
+                this.showScalability = true;
                 return "yellow";
             } else {
                 return "green";
             }
         } else if (total_devices < 1000 && total_devices > 500){
             if (memory_in_mb < server_mem_recommended){
+                this.showScalability = true;
                 return "yellow";
             } else {
                 return "green";
             }
         } else if (total_devices < 2000 && total_devices > 100){
             if (memory_in_mb < server_mem_recommended){
+                this.showScalability = true;
                 return "yellow";
             } else {
                 return "green";
             }
         } else {
             if (memory_in_mb < server_mem_recommended){
+                this.showScalability = true;
                 return "yellow";
             } else {
                 return "green";

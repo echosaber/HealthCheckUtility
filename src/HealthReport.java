@@ -130,11 +130,6 @@ public class HealthReport extends JFrame{
             //Generate the system info panel.
             String systemInfoIcon = iconGen.getSystemInfoIconType(Integer.parseInt(extractData(healthcheck, "totalcomputers")) + Integer.parseInt(extractData(healthcheck, "totalmobile")), extractData(system, "javaversion"), Double.parseDouble(extractData(system, "max_memory")));
             system_info = panelGen.generateContentPanelSystem("System Info", sys_info, "JSS Minimum Requirements", "http://www.jamfsoftware.com/resources/casper-suite-system-requirements/", systemInfoIcon);
-            if (systemInfoIcon.equals("red")){
-                this.showSystemRequirements = true;
-            } else if (systemInfoIcon.equals("yellow")){
-                this.showScalability = true;
-            }
 
             //Get all of the DB information.
             String[][] db_health = {{"Database Size", extractData(system, "database_size") + " MB"}};
@@ -246,6 +241,8 @@ public class HealthReport extends JFrame{
         }
         this.showCheckinFreq = iconGen.showCheckinFreq;
         this.showExtensionAttributes = iconGen.showCheckinFreq;
+        this.showSystemRequirements = iconGen.showSystemRequirements;
+        this.showScalability = iconGen.showScalability;
         //Update Panel Gen Variables
         updatePanelGenVariables(panelGen);
 
@@ -408,10 +405,6 @@ public class HealthReport extends JFrame{
     public int countJSONObjectSize(JsonObject obj, String key){
         JsonArray items = obj.get(key).getAsJsonArray();
         return items.size();
-    }
-
-    public String generateLink(String obj, String id, String JSS_URL){
-        return JSS_URL + "/" + obj + ".html?id="+id.replace("\"","");
     }
 
     /**
