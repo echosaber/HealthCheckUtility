@@ -63,6 +63,12 @@ java -jar healthcheck.jar -h
 After all of this data is pulled, the tool will parse the data, and display important items to the end user. The items that relate to the system are not displayed with cloud hosted JSSs. 
 
 ### Changelog
+v1.0-beta.3
+* Several bug fixes
+* Changes some wording in health check messages
+* Adds additional checks to the headless version
+* Adds more error checking
+
 v1.0-beta.2
 * Added checks for mismatching dabatabase tables
 * Added more script checks
