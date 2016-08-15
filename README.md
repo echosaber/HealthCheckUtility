@@ -111,10 +111,12 @@ The source code for this tool is now being distributed freely. The code should b
 To compile you must have all of the required libraries downloaded including Apache Commons Codec, Commons Lang, GSON, JavaX JSON, JDOM and the Java MySQL connector. All of the source code lives in the /src directory. 
 
 ## Source Code TODO
+* Redo the Interface with a Java -> Javascript bridge allowing the interface to be done with HTML5/Javascript/CSS
 * Standarize Variable Names
 * Refactor Panel Generation Code
 * Finish Java Docs
 * Clean up HealthCheck class
+* Implement a library to generate the JSON 
 
 ## License
 
