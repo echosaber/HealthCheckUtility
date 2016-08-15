@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 public class StringConstants {
 
     public static final String ABOUT = "The JSS Health Check tool is provided for JSS administrators to run in their environment to attempt\n to help self diagnose issues, without having to contact JAMF Software. \nWhile it won't catch everything, this tool attempts to solve the \nmost common issues found in health checks.";

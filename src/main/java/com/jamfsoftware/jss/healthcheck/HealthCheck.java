@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

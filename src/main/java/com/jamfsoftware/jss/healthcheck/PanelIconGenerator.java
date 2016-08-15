@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 /**
  * This class handles producing the icons for the HealthReportGUI
  */

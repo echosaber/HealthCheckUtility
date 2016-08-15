@@ -1,4 +1,4 @@
-/**
+package com.jamfsoftware.jss.healthcheck; /**
  * Created by jacobschultz on 3/21/16.
  *
  */

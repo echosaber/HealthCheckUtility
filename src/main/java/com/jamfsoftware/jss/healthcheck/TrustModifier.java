@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 import java.net.*;
 import javax.net.ssl.*;
 import java.security.*;

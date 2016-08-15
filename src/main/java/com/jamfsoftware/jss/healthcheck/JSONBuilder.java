@@ -1,3 +1,4 @@
+package com.jamfsoftware.jss.healthcheck;
 
 /**
  * JSONBuilder.java, Written December 2015, Jacob Schultz

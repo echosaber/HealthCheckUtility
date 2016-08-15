@@ -1,3 +1,4 @@
+package com.jamfsoftware.jss.healthcheck;
 
 import java.util.HashMap;
 import java.util.HashSet;

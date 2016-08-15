@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;

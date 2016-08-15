@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 import java.util.*;
 
 public class JSSSummary {

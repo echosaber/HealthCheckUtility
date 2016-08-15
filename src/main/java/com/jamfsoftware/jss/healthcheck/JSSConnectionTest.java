@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
 import java.io.ByteArrayInputStream;

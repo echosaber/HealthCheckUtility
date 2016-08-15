@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

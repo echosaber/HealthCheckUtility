@@ -1,3 +1,5 @@
+package com.jamfsoftware.jss.healthcheck;
+
 public class CalculatorService {
 
 	// sync function
