@@ -27,15 +27,15 @@ import com.jamfsoftware.jss.healthcheck.ui.component.MonitorGraph;
 import com.jamfsoftware.jss.healthcheck.util.EnvironmentUtil;
 
 /**
- * Main.java - Written by Jacob Schultz 12/2015
+ * HealthCheckUtility.java - Written by Jacob Schultz 12/2015
  * This class handles the initial load of the program.
  * It detects the OS, and then opens the text interface for linux and a GUI for Windows and Mac.
  * Can be run with a -h flag to open the text interface on Mac and Windows
  * [STUB] If ran with the -m flag it will start a POC for the health monitor.
  */
-public class Main {
+public class HealthCheckUtility {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HealthCheckUtility.class);
 	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-mm-dd HH:mm");
 	private static final String LOG_FORMAT = "%s %d %d %d %d\n";
 	
@@ -47,7 +47,7 @@ public class Main {
 	private Preferences prefs = Preferences.userNodeForPackage(UserPrompt.class);
 	private final String[] args;
 	
-	public Main(String... args) {
+	public HealthCheckUtility(String... args) {
 		this.args = args;
 	}
 	
@@ -145,7 +145,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		new Main(args).start();
+		new HealthCheckUtility(args).start();
 	}
 	
 }

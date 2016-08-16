@@ -26,7 +26,7 @@ public class UserPromptHeadless {
 	//Prefs that store the config.xml.
 	private static Preferences prefs = Preferences.userNodeForPackage(UserPrompt.class);
 	
-	//Default constrictor. Called from Main.java.
+	//Default constrictor. Called from HealthCheckUtility.java.
 	public UserPromptHeadless() {
 		Scanner scanner = new Scanner(System.in);
 		Console console = System.console();
