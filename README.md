@@ -34,7 +34,8 @@ java -jar healthcheck.jar -h
 ```
 
 * Provide a JSS URL and user account that has, at least, full read permissions.
-_jss url must include the full fqdn. EG https://jss.jamfsw.com:8443+
+
+_The JSS URL must include the full fqdn. EG: https://jss.jamfsw.com:8443_
 * Click "Begin Health Check"!
 
 <img src="http://i.imgur.com/guI5zrS.png" width="50%" height="50%">
