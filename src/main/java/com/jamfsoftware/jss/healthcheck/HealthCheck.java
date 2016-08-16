@@ -7,6 +7,11 @@ import java.util.*;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 
+import com.jamfsoftware.jss.healthcheck.controller.ConfigurationController;
+import com.jamfsoftware.jss.healthcheck.controller.HTTPController;
+import com.jamfsoftware.jss.healthcheck.controller.SystemCommandController;
+import com.jamfsoftware.jss.healthcheck.util.JSONBuilder;
+
 /**
  * HealthCheck.java, Written December 2015, Jacob Schultz
  * This class is responsible for making all of the API calls and then building a JSON String to be output or used by the interface.
@@ -86,7 +91,7 @@ public class HealthCheck {
      */
     public void APIChecks(String url, String username, String password){
         //Loops through the API Objects and informs the user what is currently being checked.
-        for (String Object : this.APIObjects){
+        for (String Object : APIObjects){
             System.out.println("Hitting API Object: " + Object);
             APIObject(Object,url,username,password,this.outputJSON);
         }
@@ -147,7 +152,7 @@ public class HealthCheck {
     public String getJSSSummary(String url, String username, String password){
         HTTPController api = new HTTPController(username, password);
         try {
-           return api.sendGet(url + "/summary.html?2=on&3=off&4=on&6=on&5=on&9=on&7=on&313=on&24=on&350=on&22=on&26=on&23=on&24=on&25=on&28=on&27=on&312=on&53=on&54=on&54=on&255=on&24=on&51=on&65=on&80=on&136=on&135=on&133=on&134=on&137=on&221=on&166=on&72=on&141=on&124=on&125=on&158=on&252=on&163=on&310=on&381=on&90=on&91=on&92=on&96=on&95=on&94=on&93=on&74=on&75=on&76=on&82=on&81=on&122=on&118=on&119=on&73=on&117=on&123=on&83=on&11=on&77=on&171=on&128=on&86=on&131=on&314=on&169=on&87=on&41=on&42=on&43=on&360=on&44=on&45=on&tableRowCounts=on&tableSize=on&Action=Create&username="+username+"&password="+password);
+           return api.doGet(url + "/summary.html?2=on&3=off&4=on&6=on&5=on&9=on&7=on&313=on&24=on&350=on&22=on&26=on&23=on&24=on&25=on&28=on&27=on&312=on&53=on&54=on&54=on&255=on&24=on&51=on&65=on&80=on&136=on&135=on&133=on&134=on&137=on&221=on&166=on&72=on&141=on&124=on&125=on&158=on&252=on&163=on&310=on&381=on&90=on&91=on&92=on&96=on&95=on&94=on&93=on&74=on&75=on&76=on&82=on&81=on&122=on&118=on&119=on&73=on&117=on&123=on&83=on&11=on&77=on&171=on&128=on&86=on&131=on&314=on&169=on&87=on&41=on&42=on&43=on&360=on&44=on&45=on&tableRowCounts=on&tableSize=on&Action=Create&username="+username+"&password="+password);
         } catch (Exception e){
             return null;
         }
@@ -161,7 +166,7 @@ public class HealthCheck {
         HTTPController api = new HTTPController(username, password);
         try {
             System.out.println("Getting JSS healthCheck.html data...");
-            String result = api.sendGet(url + "/healthCheck.html?username="+username+"&password="+password);
+            String result = api.doGet(url + "/healthCheck.html?username="+username+"&password="+password);
             if (result.equals("[]")){
                 System.out.println("No JSS healthCheck.html page errors detected.");
             } else if (result.contains("DBConnectionError")){
@@ -206,7 +211,7 @@ public class HealthCheck {
             //If it's not the Summary Object, build the XML doc from the result of the API call.
             if (!Object.equals("summarydata")){
                 try {
-                    result = replaceSpecChars(api.sendGet(url + "/JSSResource/" + Object));
+                    result = replaceSpecChars(api.doGet(url + "/JSSResource/" + Object));
                     doc = sb.build(new ByteArrayInputStream(result.getBytes("UTF-8")));
                 } catch (Exception e) {
                     System.out.println("Unable to parse XML document for object: " + Object);
@@ -280,7 +285,7 @@ public class HealthCheck {
                 ArrayList<String> ldap_servers = parseMultipleObjects(ldapservers);
                 jsonString.addArrayObject("ldapservers");
                 for (int l = 0; l < ldap_servers.size(); l++) {
-                    String ldap_info = api.sendGet(url + "/JSSResource/ldapservers/id/" + ldap_servers.get(l));
+                    String ldap_info = api.doGet(url + "/JSSResource/ldapservers/id/" + ldap_servers.get(l));
                     Document account_as_xml = sb.build(new ByteArrayInputStream(ldap_info.getBytes("UTF-8")));
                     List<Element> serv = account_as_xml.getRootElement().getChildren();
                     jsonString.openArrayObject();
@@ -329,7 +334,7 @@ public class HealthCheck {
                     jsonString.addArrayObject("vppaccounts");
                     //Loop through all of the IDS and get individual account information
                     for (int a = 0; a < vpp_account_ids.size(); a++) {
-                        String account_info = api.sendGet(url + "/JSSResource/vppaccounts/id/" + vpp_account_ids.get(a));
+                        String account_info = api.doGet(url + "/JSSResource/vppaccounts/id/" + vpp_account_ids.get(a));
                         Document account_as_xml = sb.build(new ByteArrayInputStream(account_info.getBytes("UTF-8")));
                         List<Element> acc = account_as_xml.getRootElement().getChildren();
                         //Get the exp date
@@ -353,7 +358,7 @@ public class HealthCheck {
                     //Get all of the scripts
                     jsonString.addArrayObject("scripts_needing_update");
                     for (int s = 0; s < script_ids.size(); s++) {
-                        String script_info = api.sendGet(url + "/JSSResource/scripts/id/" + script_ids.get(s));
+                        String script_info = api.doGet(url + "/JSSResource/scripts/id/" + script_ids.get(s));
                         Document script_as_xml = sb.build(new ByteArrayInputStream(script_info.getBytes("UTF-8")));
                         List<Element> script = script_as_xml.getRootElement().getChildren();
                         //Get the script name and the actual content of the script
@@ -393,7 +398,7 @@ public class HealthCheck {
                     jsonString.addArrayObject("printer_warnings");
                     int xerox_count = 0;
                     for (int p = 0; p < printer_ids.size(); p++) {
-                        String printer_info = api.sendGet(url + "/JSSResource/printers/id/" + printer_ids.get(p));
+                        String printer_info = api.doGet(url + "/JSSResource/printers/id/" + printer_ids.get(p));
                         Document printer_as_xml = sb.build(new ByteArrayInputStream(printer_info.getBytes("UTF-8")));
                         List<Element> printer = printer_as_xml.getRootElement().getChildren();
                         if (printer.get(6).getContent().size() != 0){
@@ -428,7 +433,7 @@ public class HealthCheck {
                     jsonString.addArrayObject("policies_with_issues");
                     int issue_policy_count = 0;
                     for (int p = 0; p < policy_ids.size(); p++){
-                        String policy_info = api.sendGet(url + "/JSSResource/policies/id/" + policy_ids.get(p));
+                        String policy_info = api.doGet(url + "/JSSResource/policies/id/" + policy_ids.get(p));
                         Document policy_info_as_xml = sb.build(new ByteArrayInputStream(policy_info.getBytes("UTF-8")));
                         List<Element> policy = policy_info_as_xml.getRootElement().getChildren();
                         //A policy that ongoing and updates inventory AND  is triggered on a checkin
@@ -502,7 +507,7 @@ public class HealthCheck {
         try {
             HTTPController api = new HTTPController(username, password);
             SAXBuilder sb = new SAXBuilder();
-            String result = api.sendGet(url + "/JSSResource/" + object);
+            String result = api.doGet(url + "/JSSResource/" + object);
             Document doc = sb.build(new ByteArrayInputStream(result.getBytes("UTF-8")));
             List<Element> returned = doc.getRootElement().getChildren();
             return returned.size() - 1;
@@ -520,7 +525,7 @@ public class HealthCheck {
         try {
             HTTPController api = new HTTPController(username, password);
             SAXBuilder sb = new SAXBuilder();
-            String result = api.sendGet(url + "/JSSResource/" + Object);
+            String result = api.doGet(url + "/JSSResource/" + Object);
             Document doc = sb.build(new ByteArrayInputStream(result.getBytes("UTF-8")));
             List<Element> objects = doc.getRootElement().getChildren();
             int count = parseMultipleObjects(objects).size();
@@ -547,7 +552,7 @@ public class HealthCheck {
         try {
             HTTPController api = new HTTPController(username, password);
             SAXBuilder sb = new SAXBuilder();
-            String result = api.sendGet(url + "/JSSResource/" + Object);
+            String result = api.doGet(url + "/JSSResource/" + Object);
             Document doc = sb.build(new ByteArrayInputStream(result.getBytes("UTF-8")));
 
             List<Element> groups = doc.getRootElement().getChildren();
@@ -556,7 +561,7 @@ public class HealthCheck {
             jsonString.addArrayObject(Object);
             int problems_added = 0;
             for (int c = 0; c < group_ids.size(); c++) {
-                String group_info = api.sendGet(url + "/JSSResource/"+Object+"/id/" + group_ids.get(c));
+                String group_info = api.doGet(url + "/JSSResource/"+Object+"/id/" + group_ids.get(c));
                 Document account_as_xml = sb.build(new ByteArrayInputStream(group_info.getBytes("UTF-8")));
                 List<Element> group = account_as_xml.getRootElement().getChildren();
 

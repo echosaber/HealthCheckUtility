@@ -1,4 +1,4 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.ui;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

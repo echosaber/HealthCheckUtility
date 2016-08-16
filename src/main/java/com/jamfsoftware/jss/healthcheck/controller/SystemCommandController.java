@@ -1,4 +1,4 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -56,23 +56,6 @@ public class SystemCommandController {
         }
     }
 
-    //Runs a shell command on the server from a string
-    public String executeCommand(String command){
-        String s;
-        String output = "";
-        try {
-            Process p = Runtime.getRuntime().exec(command);
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((s = stdInput.readLine()) != null){
-                output += s;
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-            System.exit(-1);
-        }
-        return output;
-    }
-
     //Runs a number of commands on the server from a string array.
     public String executeCommand(String[] command){
         String s;
@@ -99,16 +82,6 @@ public class SystemCommandController {
 
 
         return "Startup Memory: " + startup + " Max Memory: " + max;
-    }
-
-    //Returns the OS
-    public String returnOS(){
-        return System.getProperty("os.name");
-    }
-
-    //Returns the Version of Java being run
-    public String returnJavaVersion(){
-        return System.getProperty("java.version");
     }
 
     /* Total number of processors or cores available to the JVM */

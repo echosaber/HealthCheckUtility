@@ -1,7 +1,11 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.ui.generator;
 
 import javax.swing.*;
 import java.awt.*;
+
+import com.jamfsoftware.jss.healthcheck.controller.ConfigurationController;
+import com.jamfsoftware.jss.healthcheck.util.StringConstants;
+import com.jamfsoftware.jss.healthcheck.ui.component.URLLabel;
 
 public class PanelGenerator {
     public String JSSURL = "";

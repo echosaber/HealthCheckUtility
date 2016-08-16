@@ -1,4 +1,4 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.service;
 
 public class CalculatorService {
 

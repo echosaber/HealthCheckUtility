@@ -1,4 +1,6 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.ui.generator;
+
+import com.jamfsoftware.jss.healthcheck.controller.ConfigurationController;
 
 /**
  * This class handles producing the icons for the HealthReportGUI

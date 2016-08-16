@@ -1,9 +1,10 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.ui;
+
+import com.jamfsoftware.jss.healthcheck.JavaToJavascriptBridge;
+import com.jamfsoftware.jss.healthcheck.service.CalculatorService;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -30,12 +31,7 @@ public class HealthReport2 extends Application {
                 "calculatorService", new CalculatorService());
 
         // show "alert" Javascript messages in stdout (useful to debug)
-        webView.getEngine().setOnAlert(new EventHandler<WebEvent<String>>(){
-            @Override
-            public void handle(WebEvent<String> arg0) {
-                System.err.println("alertwb1: " + arg0.getData());
-            }
-        });
+        webView.getEngine().setOnAlert(e -> System.err.println("alertwb1: " + e.getData()));
 
         // load index.html
         webView.getEngine().load(

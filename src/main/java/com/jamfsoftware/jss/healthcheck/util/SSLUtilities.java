@@ -1,4 +1,4 @@
-package com.jamfsoftware.jss.healthcheck;
+package com.jamfsoftware.jss.healthcheck.util;
 
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
