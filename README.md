@@ -3,6 +3,8 @@
 The JSS Health Check Utility is a lightweight tool for JSS administrators to run inside of their environments to perform automated health checks. It performs checks for things that commonly appear during scheduled health checks, like having too little RAM, expiring items, bad scripts, etc. Simply provide the tool the JSS URL, Username, and Password. The tool will perform API GETs to the JSS, get the JSS Summary, as well as run some commands on the system, and then display a report to the end user. Nothing is ever edited, only read. The goal of this tool is to help administrators identify issues with their environment before the issues arise. This tool was written in Java, to be cross platform and available to as many as possible. 
 **This tool is provided "AS IS", therefore no support from JAMF Software is guaranteed.**
 
+**Any code commits should go to develop**
+
 ## Getting Started
 
 The latest release will always be available in the "Releases" button above. (See screenshot)
