@@ -67,8 +67,8 @@ public class HealthCheck {
         }
         //Start the API Checks and build the JSON.
         System.out.println("Getting JSS Summary..");
-        this.summary = new JSSSummary(getJSSSummary(url,username,password));
         JSSConnectionTest test = new JSSConnectionTest(url,username,password);
+        this.summary = new JSSSummary(getJSSSummary(url,username,password,test.getJSSVersion()));
         getJSSHealthCheckPage(url,username,password);
         this.isCloudJSS = Boolean.toString(test.isCloudJSS());
         this.numberOfComputers = checkAPILength(url, username, password, "computers");
@@ -95,7 +95,7 @@ public class HealthCheck {
         System.out.println("Getting the JSS Summary");
         JSSConnectionTest test = new JSSConnectionTest(url,username,password);
         this.isCloudJSS = Boolean.toString(test.isCloudJSS());
-        this.summary = new JSSSummary(getJSSSummary(url,username,password));
+        this.summary = new JSSSummary(getJSSSummary(url,username,password,test.getJSSVersion()));
         this.numberOfComputers = checkAPILength(url, username, password, "computers");
         this.numberOfMobileDevices = checkAPILength(url, username, password, "mobiledevices");
         this.numberOfUsers = checkAPILength(url, username, password, "users");
@@ -175,10 +175,14 @@ public class HealthCheck {
      * This method POSTs to the JSS Summary page, with all options enabled.
      * @return The entire JSS summary result from the post.
      */
-    public String getJSSSummary(String url, String username, String password){
+    public String getJSSSummary(String url, String username, String password, double version){
         HTTPController api = new HTTPController(username, password);
         try {
-           return api.doGet(url + "/summary.html?2=on&3=on&4=on&6=on&5=on&9=on&7=on&313=on&24=on&350=on&600=on&22=on&26=on&23=on&24=on&25=on&28=on&27=on&312=on&53=on&54=on&54=on&255=on&24=on&51=on&65=on&80=on&136=on&135=on&133=on&134=on&137=on&221=on&166=on&390=on&72=on&141=on&124=on&125=on&158=on&252=on&163=on&310=on&381=on&500=on&90=on&91=on&92=on&96=on&95=on&94=on&93=on&74=on&75=on&76=on&82=on&81=on&122=on&118=on&119=on&73=on&117=on&123=on&83=on&11=on&77=on&171=on&128=on&86=on&131=on&314=on&169=on&87=on&41=on&42=on&43=on&360=on&44=on&45=on&tableRowCounts=on&tableSize=on&action=Create&safari_autofill_target=&FIELD_JAMF_NATION_USERNAME=&fakeUsername=&fakePassword=&FIELD_JAMF_NATION_PASSWORD=&username="+username+"&password="+password);
+            if (version >= 9.93){
+                return api.doGet(url + "/summary.html?2=on&3=on&4=on&6=on&5=on&9=on&7=on&313=on&24=on&350=on&600=on&22=on&26=on&23=on&24=on&25=on&28=on&27=on&312=on&53=on&54=on&54=on&255=on&24=on&51=on&65=on&80=on&136=on&135=on&133=on&134=on&137=on&221=on&166=on&390=on&72=on&141=on&124=on&125=on&158=on&252=on&163=on&310=on&381=on&500=on&90=on&91=on&92=on&96=on&95=on&94=on&93=on&74=on&75=on&76=on&82=on&81=on&122=on&118=on&119=on&73=on&117=on&123=on&83=on&11=on&77=on&171=on&128=on&86=on&131=on&314=on&169=on&87=on&41=on&42=on&43=on&360=on&44=on&45=on&tableRowCounts=on&tableSize=on&action=Create&safari_autofill_target=&FIELD_JAMF_NATION_USERNAME=&fakeUsername=&fakePassword=&FIELD_JAMF_NATION_PASSWORD=&username="+username+"&password="+password);
+            } else {
+                return api.doGet(url + "/summary.html?2=on&3=off&4=on&6=on&5=on&9=on&7=on&313=on&24=on&350=on&22=on&26=on&23=on&24=on&25=on&28=on&27=on&312=on&53=on&54=on&54=on&255=on&24=on&51=on&65=on&80=on&136=on&135=on&133=on&134=on&137=on&221=on&166=on&72=on&141=on&124=on&125=on&158=on&252=on&163=on&310=on&381=on&90=on&91=on&92=on&96=on&95=on&94=on&93=on&74=on&75=on&76=on&82=on&81=on&122=on&118=on&119=on&73=on&117=on&123=on&83=on&11=on&77=on&171=on&128=on&86=on&131=on&314=on&169=on&87=on&41=on&42=on&43=on&360=on&44=on&45=on&tableRowCounts=on&tableSize=on&Action=Create&username="+username+"&password="+password);
+            }
         } catch (Exception e){
             return null;
         }
